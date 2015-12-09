@@ -106,7 +106,7 @@ GEM
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
     oauth (0.4.7)
-    oauth-plugin (0.4.1)
+    oauth-plugin (0.5.1)
       multi_json
       oauth (~> 0.4.4)
       oauth2 (>= 0.5.0)
@@ -228,7 +228,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   oauth
-  oauth-plugin (~> 0.4.0)
+  oauth-plugin (~> 0.5.0)
   poltergeist
   rails (= 4.2.5)
   rspec-rails (>= 2.0.1)
