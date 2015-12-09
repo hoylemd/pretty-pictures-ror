@@ -34,7 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  # gem 'byebug' # commenting this out because it requires ruby 2. I use it for reals though
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails'
   gem 'database_cleaner'
