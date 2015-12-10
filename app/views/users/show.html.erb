@@ -1,6 +1,6 @@
 <h1>User</h1>
 
 <p>Username: <%= @user.username %></p>
-<p>Connected to 500px? <%= @connected ? 'Yes' : 'No' %> </p>
+<p>Connected to 500px? <%= connected_to_500px @user %> </p>
 <p>Bio:<p>
 <p><%= @user.bio %>
