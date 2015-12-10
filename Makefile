@@ -1,14 +1,16 @@
 migrate:
 	bundle exec rake db:migrate
 
-test:
+test: FORCE
 	bundle exec rake test
 
-test-models:
+test-models: FORCE
 	bundle exec rake test:models
 
-capybara:
+capybara: FORCE
 	bundle exec cucumber
 
 server:
 	bundle exec rails server
+
+FORCE:
