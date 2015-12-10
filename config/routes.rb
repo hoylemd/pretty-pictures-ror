@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   get 'login' => 'users#login'
   get 'signup' => 'users#new'
 
+  resources :users
+
   root 'pretty_pictures#home'
 end
