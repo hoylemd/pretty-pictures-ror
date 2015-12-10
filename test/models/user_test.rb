@@ -49,6 +49,13 @@ class UserTest < ActiveSupport::TestCase
       "non-unique username expected to be invalid"
   end
 
+  test 'username is normalized to lower case' do
+    sut = User.create(add_password(username: 'ThePenguin'))
+
+    assert sut.username == 'thepenguin',
+      'mixed-case username expected to be normalized to lower case'
+  end
+
   test "password must be present" do
     # TODO: figure out how to make a missing confirmation fail the validaton
     joker = User.new(username: 'joker', password_confirmation: 'hahahahaha')
