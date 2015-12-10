@@ -30,6 +30,13 @@ gem 'oauth'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'cucumber-rails', :require => false
+  gem "rspec-rails", ">= 2.0.1"
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'poltergeist'
+e
 end
 
 group :development do
@@ -38,13 +45,4 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-end
-
-group :test do
-  gem "rspec-rails", ">= 2.0.1"
-  gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'selenium-webdriver'
-  gem 'poltergeist'
 end
