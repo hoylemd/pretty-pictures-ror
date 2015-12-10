@@ -1,12 +1,23 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  def add_password(user_hash)
+    {
+      password: 'password',
+      password_confirmation: 'password'
+    }.merge(user_hash)
+  end
+
   def setup
     @batman = User.new(username: "batman",
-                     token: "the_dark_knight",
-                     secret: "bruce_wayne",
-                     bio: "My parents are deeeaaaadddddd.")
-    @robin = User.new(username: "robin")
+                       password: "batmobile",
+                       password_confirmation: "batmobile",
+                       token: "the_dark_knight",
+                       secret: "bruce_wayne",
+                       bio: "My parents are deeeaaaadddddd.")
+    @robin = User.new(username: "robin",
+                      password: "boywonder",
+                      password_confirmation: "boywonder")
     @batman.save
     @robin.save
   end
@@ -20,19 +31,38 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "username is required" do
-    assert_not User.new().valid?, "username-less user expected to be invalid"
+    noman = User.new(password: 'password',
+                     password_confirmation: 'password')
+
+    assert_not noman.valid?, "username-less user expected to be invalid"
   end
 
   test "username is not blank" do
-    assert_not User.new(username: "").valid?,
-      "blank username expected to be invalid"
-    assert_not User.new(username: "   ").valid?,
-      "whitespace-only username expected to be invalid"
+    blanko = User.new(add_password(username: ''))
+    assert_not blanko.valid?, "blank username expected to be invalid"
+    blanka = User.new(add_password(username: '   '))
+    assert_not blanka.valid?, "whitespace-only username expected to be invalid"
   end
 
   test "username must be unique" do
-    assert_not User.new(username: 'batman').valid?,
+    assert_not User.new(add_password(username: 'batman')).valid?,
       "non-unique username expected to be invalid"
+  end
+
+  test "password and password_confirmation must be present" do
+    joker = User.new(username: 'joker', password: 'hahahahaha')
+    assert_not joker.valid?, 'missing confirmation expected to be invalid'
+    harley =  User.new(username: 'harley_quinn',
+                       password_confirmation: 'hahahahaha')
+    assert_not harley.valid?, 'missing password expected to be invalid'
+  end
+
+  test "password and confirmation must match" do
+    swamp_thing = User.new(username: 'swamp_thing',
+                           password: 'natureizcool',
+                           password_confirmation: 'swampsrgr8')
+    assert_not swamp_thing.valid?,
+      'mismatched password and confirmation expected to be invalid'
   end
 
   test "bio defaults to empty string" do
@@ -41,25 +71,25 @@ class UserTest < ActiveSupport::TestCase
 
   test "non-bio fields are capped at 63 characters" do
     too_long = 'x' * 64
-    long_username = User.new(username: too_long)
+    long_username = User.new(add_password(username: too_long))
     assert_not long_username.valid?, "too-long username expected to be invalid"
 
-    long_token = User.new(username: "long_token",
-                          token: too_long)
+    long_token = User.new(add_password(username: "long_token",
+                          token: too_long))
     assert_not long_token.valid?, "too-long token expected to be invalid"
 
-    long_secret = User.new(username: "long_secret",
-                           secret: too_long)
+    long_secret = User.new(add_password(username: "long_secret",
+                           secret: too_long))
     assert_not long_secret.valid?, "too-long secret expected to be invalid"
 
-    long_bio = User.new(username: "long_bio",
-                        bio: too_long)
+    long_bio = User.new(add_password(username: "long_bio",
+                        bio: too_long))
     assert long_bio.valid?, "long bio expected to be valid"
   end
 
   test "bio is capped at 255 characters" do
-    darkseid = User.new(username: 'darkseid',
-                        bio: 'x' * 256)
+    darkseid = User.new(add_password(username: 'darkseid',
+                        bio: 'x' * 256))
     assert_not darkseid.valid?, "too-long bio expected to be invalid"
   end
 end
