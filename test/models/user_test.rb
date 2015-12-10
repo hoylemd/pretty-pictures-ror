@@ -7,6 +7,8 @@ class UserTest < ActiveSupport::TestCase
                      secret: "bruce_wayne",
                      bio: "My parents are deeeaaaadddddd.")
     @robin = User.new(username: "robin")
+    @batman.save
+    @robin.save
   end
 
   test "should be valid" do
@@ -31,23 +33,6 @@ class UserTest < ActiveSupport::TestCase
   test "username must be unique" do
     assert_not User.new(username: 'batman').valid?,
       "non-unique username expected to be invalid"
-  end
-
-  test "token and secret are unique if not null" do
-    assert User.new(username: "zatana").valid?,
-      "null token and secret expected to be valid, even when others are null"
-
-    cbale = User.new(username: "christian_bale", token: "the_dark_knight")
-    assert_not cbale.valid?, "non-unique token expected to be invalid"
-
-    insider = User.new(username: "insider", secret: "bruce_wayne")
-    assert_not insider.valid?, "non-unique secret expected to be invalid"
-
-    superman = User.new(username: "superman",
-                        token: "man_of_steel",
-                        secret: "clark_kent",
-                        bio: "My parents are deeeaaaadddddd.")
-    assert superman.valid?, "non-unique bio expected to be valid"
   end
 
   test "bio defaults to empty string" do

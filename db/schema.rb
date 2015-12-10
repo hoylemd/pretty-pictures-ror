@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151210181303) do
+ActiveRecord::Schema.define(version: 20151210182331) do
 
   create_table "users", force: :cascade do |t|
     t.string   "username",   limit: 63,               null: false
