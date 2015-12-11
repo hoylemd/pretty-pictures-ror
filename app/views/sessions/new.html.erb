@@ -1,8 +1,21 @@
 <h1>Log in</h1>
 
-<p>username</p>
-<p>password</p>
+<%= form_for(@session, url: login_path) do |f| %>
+  <%= render 'shared/error_messages' %>
+  <div>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
 
-<a href="#">Log In</a>
+  <div>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
 
-<%= link_to 'Sign up', signup_path, class:"button, button-login-signup" %>
+  <div>
+    <%= f.submit 'Log in', class: 'btn btn-primary' %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Sign up', signup_path, class: 'btn, btn-login-signup' %>
