@@ -47,10 +47,6 @@ When(/I confirm my password/) do
   fill_in 'Confirmation', with: @password
 end
 
-When(/I click "(.*)"/) do | text |
-  click_on text
-end
-
 Then(/I should see my username/) do
   expect(page).to have_content(@username)
 end

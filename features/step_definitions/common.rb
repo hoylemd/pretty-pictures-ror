@@ -12,6 +12,14 @@ Given(/I am on the (.*) page/) do | page_name |
   visit page_mappings[page_name]
 end
 
+When(/I click "(.*)"/) do | text |
+  click_on text
+end
+
 Then(/I should see "(.*)"/) do |text|
   expect(page).to have_content(text)
+end
+
+Then(/I should see a success flash/) do
+  expect(page).to have_selector('.alert.alert-success')
 end
