@@ -12,6 +12,10 @@
   <h2><%= link_to 'Pretty Pictures', home_path, class: "logo" %></h2>
   <h3>The top 100 Pictures on 500px</h3>
 
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+
   <%= link_to 'Log in', login_path, class: "button button-login-signup" %>
   <%= link_to 'Sign Up', signup_path, class: "button button-login-signup" %>
 </header>
