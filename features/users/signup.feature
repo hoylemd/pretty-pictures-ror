@@ -3,6 +3,7 @@ Feature: Signup
   Background:
     Given I am on the signup page
 
+  @smoke
   Scenario: Normal signup flow
     When I enter a random username
     And I enter a random password
@@ -13,6 +14,7 @@ Feature: Signup
     And I should not see any error messages
 
 
+  @skip
   Scenario: Omit all fields
     When I click "Create my account"
     Then I should see an error message that says "Username can't be blank"

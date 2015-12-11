@@ -1,17 +1,29 @@
+EXEC=bundle exec
+RAKE=$(EXEC) rake
+SKIPTAGS=--tags ~@meta_test --tags ~@skip
+CUKE=$(EXEC) cucumber
+
 migrate:
-	bundle exec rake db:migrate
+	$(RAKE) db:migrate
 
-test: FORCE
-	bundle exec rake test
-
-test-models: FORCE
-	bundle exec rake test:models
+unit: FORCE
+	$(RAKE) test
 
 capybara: FORCE
-	bundle exec cucumber
+	$(CUKE) $(SKIPTAGS)
+
+capybara-all: FORCE
+	$(CUKE)
+
+smoke: FORCE
+	$(CUKE) --tags @smoke $(SKIPTAGS)
+
+test-all: unit capybara-all
+
+test: unit capybara
 
 server:
-	bundle exec rails server
+	$(EXEC) rails server
 
 lint:
 	rubocop > errors.rubocop
