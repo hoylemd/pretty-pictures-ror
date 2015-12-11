@@ -10,6 +10,7 @@ Feature: Signup
     And I click "Create my account"
     Then I should see "User"
     And I should see my username
+    And I should see "Welcome to Pretty Pictures!"
 
   Scenario: Omit all fields
     When I click "Create my account"

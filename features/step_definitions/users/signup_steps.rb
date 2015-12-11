@@ -1,9 +1,25 @@
-def random_string(length=8, lc=true, uc=true, n=true, s=false)
+def random_string(length=8, options)
+  # Generates a random string of `length` length
+  # options:
+  #  lower_case: boolean. set to false to exclude lower case characters
+  #              default: true
+  #  upper_case: boolean. set to false to exclude upper case characters
+  #              default: true
+  #  numbers: boolean. set to false to exclude numberic characters
+  #              default: true
+  #  special: boolean. set to false to exclude special characters ( _?&)
+  #              default: true
+
+  default_classes = {
+    lower_case: true, upper_case: true, numbers: true, special: false
+  }
+  use = default_classes.merge(options || {})
+
   characters = []
-  characters += ('a'..'z').map { |i| i } if lc
-  characters += ('A'..'Z').map { |i| i } if uc
-  characters += ('0'..'9').map { |i| i } if n
-  characters += [' ', '_', '?', '&']  if s
+  characters += ('a'..'z').map { |i| i } if use[:lower_case]
+  characters += ('A'..'Z').map { |i| i } if use[:upper_case]
+  characters += ('0'..'9').map { |i| i } if use[:numbers]
+  characters += [' ', '_', '?', '&']  if use[:special]
 
   if characters.empty?
     raise Exception, "you need to choose at least one character class!"
@@ -12,14 +28,15 @@ def random_string(length=8, lc=true, uc=true, n=true, s=false)
   (0...length).map { characters[rand(characters.length)] }.join
 end
 
-def fill_in_random(field, prefix=nil)
-  string = prefix.nil? ? "#{prefix}:#{random_string}" : "#{random_string}"
+def fill_in_random(field, prefix=nil, string_options=nil)
+  random = random_string string_options
+  string = prefix.nil? ? "#{prefix}:#{random}" : "#{random}"
   fill_in field, with: string
   string
 end
 
 When(/I enter a random username/) do
-  @username = fill_in_random('Username', 'username')
+  @username = fill_in_random('Username', 'username', upper_case: false)
 end
 
 When(/I enter a random password/) do
@@ -27,7 +44,7 @@ When(/I enter a random password/) do
 end
 
 When(/I confirm my password/) do
-  fill_in 'Password', with: @password
+  fill_in 'Confirmation', with: @password
 end
 
 When(/I click "(.*)"/) do | text |
