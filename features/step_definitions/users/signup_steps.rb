@@ -19,10 +19,21 @@ def fill_in_random(field, prefix=nil)
 end
 
 When(/I enter a random username/) do
-  @username = fill_in_random('username', 'username')
+  @username = fill_in_random('Username', 'username')
 end
 
 When(/I enter a random password/) do
-  @password = fill_in_random('password', 'password')
+  @password = fill_in_random('Password', 'password')
 end
-p
+
+When(/I confirm my password/) do
+  fill_in 'Password', with: @password
+end
+
+When(/I click "(.*)"/) do | text |
+  click_on text
+end
+
+Then(/I should see my username/) do
+  expect(page).to have_content(@username)
+end
