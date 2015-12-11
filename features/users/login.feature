@@ -13,4 +13,4 @@ Feature: Login
     And I click "Log in"
     Then I should see a success flash
     And I should not see any error messages
-    And I should see "Home page"
+    And I should see my user profile
