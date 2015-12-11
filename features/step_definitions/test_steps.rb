@@ -1,13 +1,7 @@
-Then(/I test my assert methods/) do
+Then(/I test my assert helper/) do
   assert(true)
   assert(5)
   assert('yes')
-  assert_not(false)
-  assert_not(nil)
-  assert_equal(-3, -3)
-  assert_equal('hi', 'hi')
-  assert_not_equal(17, 2)
-  assert_not_equal('hi', 'bye')
 
   begin
     assert(false)
@@ -18,6 +12,11 @@ Then(/I test my assert methods/) do
     assert(nil)
   rescue AssertionFailed
   end
+end
+
+Then(/I test my assert_not helper/) do
+  assert_not(false)
+  assert_not(nil)
 
   begin
     assert_not(true)
@@ -35,6 +34,18 @@ Then(/I test my assert methods/) do
     assert_not('hi')
   rescue AssertionFailed
   end
+end
+
+Then(/I test my assert_element_present helper/) do
+  #TODO: write this test
+end
+
+Then(/I test the rest of my assert helpers/) do
+  assert_equal(-3, -3)
+  assert_equal('hi', 'hi')
+  assert_not_equal(17, 2)
+  assert_not_equal('hi', 'bye')
+
   begin
     assert_equal('hi', 'bye')
   rescue AssertionFailed
