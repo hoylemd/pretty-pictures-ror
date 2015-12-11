@@ -21,3 +21,28 @@ def assert_not_equal(test, unexpected, message=nil)
   message = "[#{test}] was equal to [#{unexpected}]" if message.nil?
   return assert test != unexpected, message
 end
+
+def assert_element_present(selector, message=nil, allow_ambiguous=false,
+                           options)
+  # options are passed directly to Capybara::Session#find
+  # generally, it'll just be {text: 'text you are looking for'}
+  found = ""
+  begin
+    page.find(selector, options)
+  rescue Capybara::Ambiguous
+    unless allow_ambiguous
+      unless message
+         message = "found multiple elements '#{selector}'" +
+           " with content '#{message}'"
+      end
+      found = 'multiple'
+    end
+  rescue Capybara::ElementNotFound
+    unless message
+      message = "failed to find element '#{selector}'"
+      message += " with content '#{options[:text]}'" if options[:text]
+    end
+    found = 'none'
+  end
+  raise AssertionFailed, message unless found.empty?
+end

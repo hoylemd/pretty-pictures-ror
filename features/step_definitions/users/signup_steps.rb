@@ -60,18 +60,6 @@ Then(/I should not see any error messages/) do
 end
 
 # TODO: remove the any case from this
-Then(/I should see (an|any) error message that says "(.*)"/) do | any, message |
-  selector = '.error-message'
-  begin
-    page.find(selector, text: message)
-  rescue Capybara::Ambiguous
-    unless any
-      feedback = "found multiple elements '#{selector}'" +
-        " with content '#{message}'"
-      raise AssertionFailed, feedback
-    end
-  rescue Capybara::ElementNotFound
-    feedback = "failed to find element '#{selector}' with content '#{message}'"
-    raise AssertionFailed, feedback
-  end
+Then(/I should see (an|any) error message that says "(.*)"/) do |any, message|
+  assert_element_present('.error-message', nil, (any == 'any'), text: message)
 end
