@@ -16,8 +16,13 @@
     <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
   <% end %>
 
-  <%= link_to 'Log in', login_path, class: "button button-login-signup" %>
-  <%= link_to 'Sign Up', signup_path, class: "button button-login-signup" %>
+  <% if current_user.nil? %>
+    <%= link_to 'Sign Up', signup_path, class: "btn btn-session-action" %>
+    <%= link_to 'Log in', login_path, class: "btn btn-session-action" %>
+  <% else %>
+    Welcome, <%= current_user.username %>
+    <%= link_to 'Log Out', logout_path, class: "btn btn-session-action" %>
+  <% end %>
 </header>
 
 <%= yield %>
