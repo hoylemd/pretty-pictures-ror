@@ -13,4 +13,7 @@ capybara: FORCE
 server:
 	bundle exec rails server
 
+lint:
+	rubocop > errors.rubocop
+
 FORCE:
