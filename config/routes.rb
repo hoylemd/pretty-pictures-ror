@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-
-  get 'users/new'
-
-  get 'home'  => 'pretty_pictures#home'
-
-  get 'login' => 'users#login'
-  get 'signup' => 'users#new'
-
+  root      'pretty_pictures#home'
+  get       'home'    => 'pretty_pictures#home'
+  get       'signup'  => 'users#new'
   resources :users
 
-  root 'pretty_pictures#home'
+  get       'login'   => 'sessions#new'
+  post      'login'   => 'sessions#create'
+  delete    'logout'  => 'sessions#destroy'
+
 end
