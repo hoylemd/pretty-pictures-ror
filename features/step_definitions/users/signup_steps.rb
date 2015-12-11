@@ -55,6 +55,23 @@ Then(/I should see my username/) do
   expect(page).to have_content(@username)
 end
 
-Then(/I should not see an error flash message/) do
-  expect(page).not_to have_selector('alert alert-danger')
+Then(/I should not see any error messages/) do
+  expect(page).not_to have_selector('.alert.alert-danger')
+end
+
+# TODO: remove the any case from this
+Then(/I should see (an|any) error message that says "(.*)"/) do | any, message |
+  selector = '.error-message'
+  begin
+    page.find(selector, text: message)
+  rescue Capybara::Ambiguous
+    unless any
+      feedback = "found multiple elements '#{selector}'" +
+        " with content '#{message}'"
+      raise AssertionFailed, feedback
+    end
+  rescue Capybara::ElementNotFound
+    feedback = "failed to find element '#{selector}' with content '#{message}'"
+    raise AssertionFailed, feedback
+  end
 end
