@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 .byebug_history
+
+# Ignore OS db files
+.DS_store
