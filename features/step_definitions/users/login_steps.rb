@@ -26,3 +26,9 @@ Then(/I should see my user profile/) do
   assert_not @username.empty?
   expect(page).to have_content("Username: #{@username}")
 end
+
+Then(/I should be logged in/) do
+  assert_not @username.empty?
+  expect(page).to have_content("Welcome, #{@username}")
+  expect(page).to have_selector('.btn.btn-session-action', text: 'Log Out')
+end
