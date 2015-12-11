@@ -32,3 +32,7 @@ Then(/I should be logged in/) do
   expect(page).to have_content("Welcome, #{@username}")
   expect(page).to have_selector('.btn.btn-session-action', text: 'Log Out')
 end
+
+Then(/I should not be logged in/) do
+  # TODO: implement this
+end
