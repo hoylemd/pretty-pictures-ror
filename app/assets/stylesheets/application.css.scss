@@ -14,9 +14,29 @@
  *= require_self
  */
 
+/* bootstrap styles to be replaced by actual bootstrap */
+
+.alert {
+  max-width: 400px;
+  border: 1px solid #888;
+  background-color: #DDD;
+
+  &.alert-success {
+    border-color: #8D8;
+    background-color: #DFD;
+  }
+
+  &.alert-danger {
+    border-color: #D88;
+    background-color: #FDD;
+  }
+}
+
 .has-error {
   border: 1px solid #F33;
 }
+
+/* actual styles to stay */
 
 #error_explanation {
   color: red;
