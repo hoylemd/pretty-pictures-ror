@@ -4,5 +4,6 @@
 <% else %>
   Welcome,
   <%= link_to current_user.username, current_user, class: "username" %>
-  <%= link_to 'Log Out', logout_path, class: "btn btn-session-action" %>
+  <%= link_to 'Log Out', logout_path,
+      method: :delete, class: "btn btn-session-action" %>
 <% end %>
