@@ -8,9 +8,10 @@ Feature: Signup
     And I enter a random password
     And I confirm my password
     And I click "Create my account"
-    Then I should see "User"
+    Then I should see "Welcome to Pretty Pictures!"
     And I should see my username
-    And I should see "Welcome to Pretty Pictures!"
+    And I should not see an error flash message
+
 
   Scenario: Omit all fields
     When I click "Create my account"

@@ -30,7 +30,7 @@ end
 
 def fill_in_random(field, prefix=nil, string_options=nil)
   random = random_string string_options
-  string = prefix.nil? ? "#{prefix}:#{random}" : "#{random}"
+  string = prefix.nil? ? "#{random}" : "#{prefix}:#{random}"
   fill_in field, with: string
   string
 end
@@ -53,4 +53,8 @@ end
 
 Then(/I should see my username/) do
   expect(page).to have_content(@username)
+end
+
+Then(/I should not see an error flash message/) do
+  expect(page).not_to have_selector('alert alert-danger')
 end
