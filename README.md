@@ -1,8 +1,6 @@
 # Pretty-pictures
 
 This is a pretty simple app to view the top 100 pretty pictures on 500px.
-The rest of this README is mostly the default ember app readme.
-It will be updated as it falls out of truthiness.
 
 ## Prerequisites
 
@@ -12,20 +10,24 @@ You will need the following things properly installed on your computer.
 * [Ruby](https://www.ruby-lang.org/en/) (for integration testing)
 * [Bundler](http://bundler.io/)
 
+note: I haven't tested installing this anywhere but my mac, so far, so this may not be strictly true.
+
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `bundle install`
+* `make install`
 
 ## Running / Development
 
-* `bundle exec rails server`
+* `make server`
 * Visit your app at [http://localhost:3000](http://localhost:3000).
 
-### Running Unit Tests
+### Runing Tests
 
-* none yet!
-
-### Running Integration Tests
-
-* `bundle exec cucumber`
+* Unit tests:                 `make unit`
+* Integration tests:
+** Main set:                  `make integration`
+** Smoke tests:               `make smoke`
+** Meta tests                 `make meta-test`
+** All, including meta tests  `make integration-all`
+* All tests:                  `make test-all`
