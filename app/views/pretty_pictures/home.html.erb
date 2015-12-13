@@ -1,3 +1,11 @@
 <h1 class='header-title id-home'>Home</h1>
 
 <p>Pretty pictures go here!</p>
+
+<% @photos.each do |photo| %>
+  <div class='grid-photo-card'>
+    <img class="photo-grid-card-photo" alt="<%=photo['name']%>"
+      src="<%=photo['image_url']%>"/>
+    <span class="photo-grid-card-name"><%=photo['name']%></span>
+  </div>
+<% end %>
