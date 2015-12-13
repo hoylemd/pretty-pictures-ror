@@ -24,13 +24,15 @@ class UsersController < ApplicationController
   end
 
   def create_connection
-    # accept 500px un/pw
-    # request the token/secret
-    # store them
-    # redirect to home
+    redirect_to login_path unless logged_in?
+
+    @credentials = fivehundredpx_params
+
+    #redirect_to home_path
   end
 
   def destroy_connection
+    redirect_to login_path unless logged_in?
     # send revoke request
     # remove token/secret from user model
   end
@@ -39,5 +41,12 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :username, :password, :password_confirmation, :bio)
+    end
+
+    def fivehundredpx_params
+      {
+        username: params.require(:username),
+        password: params.require(:password)
+      }
     end
 end
