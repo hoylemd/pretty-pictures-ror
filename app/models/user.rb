@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
 
   has_secure_password
+
+  def connected_to_500px?
+    !(self.oauth_token.blank? or self.oauth_secret.blank?)
+  end
 end

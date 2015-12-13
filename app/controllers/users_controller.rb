@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def connect
     redirect_to login_path unless logged_in?
+    redirect_to home_path if @current_user.connected_to_500px?
   end
 
   def create_connection
