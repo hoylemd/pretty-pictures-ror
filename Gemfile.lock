@@ -213,6 +213,7 @@ DEPENDENCIES
   database_cleaner
   jbuilder (~> 2.0)
   jquery-rails
+  multi_json
   oauth
   poltergeist
   rails (= 4.2.5)
