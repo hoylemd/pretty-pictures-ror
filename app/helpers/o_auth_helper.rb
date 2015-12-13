@@ -2,7 +2,7 @@ module OAuthHelper
   def build_api(token, secret)
     # provide user's access token and secret, receive api object
     # (spoiler: the api object is just an oauth access token object)
-
+    OAuth::AccessToken.new(oauth_consumer, token, secret)
   end
 
   def get_access_token_from_username_and_password(credentials)
