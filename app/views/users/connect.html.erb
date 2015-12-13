@@ -1,0 +1,19 @@
+<h1 class="header-title id-connect">Connect to 500px</h1>
+
+<p>Enter your 500px credentials here</p>
+
+<%= form_tag({controller: 'users', action: 'create_connection'},
+             {method: 'post'}) do %>
+  <div>
+    <%= label_tag(:username, "500px Username:") %>
+    <%= text_field_tag(:username) %>
+  </div>
+  <div>
+    <%= label_tag(:password, "500px Password:") %>
+    <%= password_field_tag(:password) %>
+  </div>
+  <div>
+    <%= submit_tag("Search") %>
+  </div>
+<% end %>
+

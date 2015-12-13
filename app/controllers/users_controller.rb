@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def connect
-    # just render the template
+    redirect_to login_path unless logged_in?
   end
 
   def create_connection
