@@ -19,6 +19,22 @@ class UsersController < ApplicationController
     @user= User.find(params[:id])
   end
 
+  def connect
+    # just render the template
+  end
+
+  def create_connection
+    # accept 500px un/pw
+    # request the token/secret
+    # store them
+    # redirect to home
+  end
+
+  def destroy_connection
+    # send revoke request
+    # remove token/secret from user model
+  end
+
   private
     def user_params
       params.require(:user).permit(

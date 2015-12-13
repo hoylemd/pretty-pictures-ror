@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   post      'login'   => 'sessions#create'
   delete    'logout'  => 'sessions#destroy'
 
+  get       'connect' => 'users#connect'
+  post      'connect' => 'users#create_connection'
+  delete    'connect' => 'users#destroy_connection'
 end
