@@ -36,8 +36,14 @@ class UsersController < ApplicationController
     redirect_to home_path
   end
 
-  def destroy_connection
+  def disconnect
     redirect_to login_path unless logged_in?
+
+    @current_user.oauth_token = nil
+    @current_user.oauth_secret = nil
+    @current_user.save!(validate: false)
+
+    redirect_to home_path
   end
 
   private

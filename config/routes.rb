@@ -10,5 +10,5 @@ Rails.application.routes.draw do
 
   get       'connect' => 'users#connect'
   post      'connect' => 'users#create_connection'
-  delete    'connect' => 'users#destroy_connection'
+  delete    'connect' => 'users#disconnect'
 end

@@ -1,6 +1,16 @@
 <h1>User</h1>
 
 <p>Username: <%= @user.username %></p>
-<p>Connected to 500px? <%= @user.connected_to_500px? ? 'Yes' : 'No' %> </p>
+<p>Connected to 500px?
+  <% if @user.connected_to_500px? %>
+    Yes
+    <%= link_to 'Disconnect', connect_path,
+      class: 'btn, btn-disconnect', method: 'delete' %>
+  <% else %>
+    No
+    <%= link_to 'Connect', connect_path,
+      class: 'btn, btn-connect' %>
+  <% end %>
+</p>
 <p>Bio:<p>
 <p><%= @user.bio %></p>
