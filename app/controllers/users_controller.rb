@@ -26,15 +26,17 @@ class UsersController < ApplicationController
   def create_connection
     redirect_to login_path unless logged_in?
 
-    @access_token = get_access_token(fivehundredpx_params)
+    access_token = get_access_token(fivehundredpx_params)
 
-    #redirect_to home_path
+    @current_user.oauth_token = access_token.token
+    @current_user.oauth_secret = access_token.secret
+    @current_user.save!(validate: false)
+
+    redirect_to home_path
   end
 
   def destroy_connection
     redirect_to login_path unless logged_in?
-    # send revoke request
-    # remove token/secret from user model
   end
 
   private
