@@ -2,10 +2,11 @@
 
 <p>Pretty pictures go here!</p>
 
+<div class='photo-grid'>
 <% @photos.each do |photo| %>
-  <div class='grid-photo-card'>
-    <img class="photo-grid-card-photo" alt="<%=photo['name']%>"
+  <div class='photo-grid-card'>
+    <img class="photo-grid-card-image" alt="<%=photo['name']%>"
       src="<%=photo['image_url']%>"/>
-    <span class="photo-grid-card-name"><%=photo['name']%></span>
+    <div class="photo-grid-card-name"><%=photo['name']%></div>
   </div>
 <% end %>

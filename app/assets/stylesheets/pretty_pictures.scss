@@ -1,3 +1,21 @@
 // Place all the styles related to the PrettyPictures controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo-grid {
+  .photo-grid-card {
+    width: 150px;
+    height: 180px;
+    float: left;
+
+    display: inline-block;
+    .photo-grid-card-image {
+      margin: 5px;
+    }
+    .photo-grid-card-name {
+      text-align: center;
+      width: 100%;
+      font-size: 15px;
+    }
+  }
+}
