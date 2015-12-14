@@ -20,11 +20,13 @@ module OAuthHelper
     end
 
     def get_photo(id)
-      return {
-        'name'=> 'A picture',
-        'description'=> "It's pretty",
-        'image_url'=> 'http://fillmurray.com/600/400'
-      }
+      path = "/v1/photos/#{id}"
+      if @identity
+        response = @identity.get(path)
+      else
+        response = @consumer.request('get', path)
+      end
+      MultiJson.decode(response.body)['photo']
     end
 
     def get_user_access_token(credentials)
