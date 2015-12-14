@@ -3,11 +3,10 @@ Given(/I have an account/) do
   # to implement an API for my app. This is an AWFUL way to set up integration
   # tests though - I am *not* a fan
   step 'I am on the signup page'
-  step 'I enter a random password'
-  step 'I click "Create my account"'
+  step 'I complete the signup form'
   step 'I should see "Welcome to Pretty Pictures!"'
   step 'I should not see any error messages'
-  step 'I log out'
+  click_on 'Log Out'
 end
 
 When(/I enter my username/) do

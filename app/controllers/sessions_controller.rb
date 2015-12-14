@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def new
     redirect_to root_path if logged_in?
+    @hide_user_header = true
   end
 
   def create
