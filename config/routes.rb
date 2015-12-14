@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'photos/show'
-
-  get 'photos/like'
 
   root      'pretty_pictures#home'
   get       'home'    => 'pretty_pictures#home'
@@ -15,4 +12,7 @@ Rails.application.routes.draw do
   get       'connect' => 'users#connect'
   post      'connect' => 'users#create_connection'
   delete    'connect' => 'users#disconnect'
+
+  get       'photos/:id' => 'photos#show'
+  patch     'photos/:id' => 'photos#update'
 end
