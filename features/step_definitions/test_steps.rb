@@ -37,14 +37,13 @@ Then(/I test my assert_not helper/) do
 end
 
 Then(/I test my assert_element_present helper/) do
-  #TODO: write this test
+  # TODO: write this test. I'll leave it till later, because there's little
+  # value in testing it now, and I'm not quite sure how I'll do it.
 end
 
-Then(/I test the rest of my assert helpers/) do
+Then(/I test my assert_equal helper/) do
   assert_equal(-3, -3)
   assert_equal('hi', 'hi')
-  assert_not_equal(17, 2)
-  assert_not_equal('hi', 'bye')
 
   begin
     assert_equal('hi', 'bye')
@@ -54,6 +53,12 @@ Then(/I test the rest of my assert helpers/) do
     assert_equal(0.5, 0.55)
   rescue AssertionFailed
   end
+end
+
+Then(/I test my assert_not_equal helper/) do
+  assert_not_equal(17, 2)
+  assert_not_equal('hi', 'bye')
+
   begin
     assert_not_equal(3, 3)
   rescue AssertionFailed
