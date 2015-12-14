@@ -47,14 +47,14 @@ def assert_element_present(selector, message=nil, allow_ambiguous=false,
   raise AssertionFailed, message unless found.empty?
 end
 
-def random_string(length=8, options)
+def random_string(length=8, options={})
   # Generates a random string of `length` length
   # options:
   #  lower_case: boolean. set to false to exclude lower case characters
   #              default: true
   #  upper_case: boolean. set to false to exclude upper case characters
   #              default: true
-  #  numbers: boolean. set to false to exclude numberic characters
+  #  numbers: boolean. set to false to exclude numeric characters
   #              default: true
   #  special: boolean. set to false to exclude special characters ( _?&)
   #              default: true

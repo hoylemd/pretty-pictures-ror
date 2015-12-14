@@ -68,3 +68,44 @@ Then(/I test my assert_not_equal helper/) do
   rescue AssertionFailed
   end
 end
+
+When(/I seed the rand method with "([\d]+)"/) do |seed|
+  srand(Integer(seed))
+end
+
+Then(/random_string should return "(.+)"/) do |expected|
+  assert_equal(random_string, expected)
+end
+
+Then(/random_string\(([\d]+)\) should return "(.+)"/) do |length, expected|
+  length_arg = Integer(length)
+
+  ret_val = random_string(length_arg)
+
+  assert_equal(ret_val, expected)
+  assert_equal(ret_val.length, length_arg)
+end
+
+Then(/random_string without (lower_case|upper_case|numbers) should return "(.+)"/) do |exclude, expected|
+  options = {
+    lower_case: exclude == 'lower_case' ? false : true,
+    upper_case: exclude == 'upper_case' ? false : true,
+    numbers: exclude == 'numbers' ? false : true
+  }
+  assert_equal(random_string(8, options), expected)
+end
+
+Then(/random_string with special should return "(.+)"/) do |expected|
+  assert_equal(random_string(32, lower_case: false, special: true), expected)
+end
+
+Then(/random_string without any classes should error/) do
+  begin
+    random_string(8, lower_case: false, upper_case: false, numbers: false)
+  rescue Exception
+
+  else
+    msg = 'No exception caught when random_string was called without classes.'
+    raise AssertionFailed, msg
+  end
+end
