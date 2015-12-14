@@ -109,3 +109,7 @@ Then(/random_string without any classes should error/) do
     raise AssertionFailed, msg
   end
 end
+
+Then(/I reset the random seed to the current timestamp/) do
+  srand(Time.now.to_i)
+end
