@@ -14,6 +14,13 @@ Feature: Signup
     And I should not see any error messages
     And I should see "Connected to 500px? No"
 
+  Scenario: All signup fields are present
+    Then I should see a "Username" field
+    And I should see a "Password" field
+    And I should see a "Password Confirmation" field
+    And I should see a "Bio" field
+
+
   Scenario: Omit all fields
     When I click "Create my account"
     Then I should see an error message that says "Username can't be blank"
