@@ -1,8 +1,7 @@
 class PhotosController < ApplicationController
   def show
-    @id = params[:id]
-
-
+    adaptor = FiveHundredPxAdaptor.new(current_user)
+    @photo = adaptor.get_photo(params[:id])
   end
 
   def update

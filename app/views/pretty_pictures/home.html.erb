@@ -5,8 +5,10 @@
 <div class='photo-grid'>
 <% @photos.each do |photo| %>
   <div class='photo-grid-card'>
-    <img class="photo-grid-card-image" alt="<%=photo['name']%>"
-      src="<%=photo['image_url']%>"/>
-    <div class="photo-grid-card-name"><%=photo['name']%></div>
+    <a href="/photos/<%=photo['id']%>">
+      <img class="photo-grid-card-image" alt="<%=photo['name']%>"
+        src="<%=photo['image_url']%>"/>
+      <div class="photo-grid-card-name"><%=photo['name']%></div>
+  </a>
   </div>
 <% end %>
