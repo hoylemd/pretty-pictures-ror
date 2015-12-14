@@ -30,6 +30,16 @@ Then(/I should see "(.*)"/) do |text|
   expect(page).to have_content(text)
 end
 
+def field_name_to_css(name)
+  ".form-field.form-field-#{string_to_slug name}"
+end
+
+Then(/I should see a "(.+)" field/) do |field_name|
+  field = page.find("#{field_name_to_css field_name}")
+  assert_find(field, 'label', text: field_name)
+  assert_find(field, 'input.form-control')
+end
+
 Then(/I should see a success flash/) do
   expect(page).to have_selector('.alert.alert-success')
 end

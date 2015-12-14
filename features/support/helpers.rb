@@ -22,13 +22,12 @@ def assert_not_equal(test, unexpected, message=nil)
   return assert test != unexpected, message
 end
 
-def assert_element_present(selector, message=nil, allow_ambiguous=false,
-                           options)
+def assert_find(parent, selector, message=nil, allow_ambiguous=false, options=nil)
   # options are passed directly to Capybara::Session#find
   # generally, it'll just be {text: 'text you are looking for'}
   found = ""
   begin
-    page.find(selector, options)
+    parent.find(selector, options)
   rescue Capybara::Ambiguous
     unless allow_ambiguous
       unless message
@@ -45,6 +44,11 @@ def assert_element_present(selector, message=nil, allow_ambiguous=false,
     found = 'none'
   end
   raise AssertionFailed, message unless found.empty?
+end
+
+def assert_element_present(selector, message=nil, allow_ambiguous=false,
+                           options)
+  assert_find(page, selector, message, allow_ambiguous, options)
 end
 
 def random_string(options={})
@@ -83,4 +87,8 @@ def fill_in_random(field, prefix=nil, string_options=nil)
   string = prefix.nil? ? "#{random}" : "#{prefix}:#{random}"
   fill_in field, with: string
   string
+end
+
+def string_to_slug(string)
+  string.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
 end
