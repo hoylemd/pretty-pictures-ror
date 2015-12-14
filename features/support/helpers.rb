@@ -47,9 +47,10 @@ def assert_element_present(selector, message=nil, allow_ambiguous=false,
   raise AssertionFailed, message unless found.empty?
 end
 
-def random_string(length=8, options={})
+def random_string(options={})
   # Generates a random string of `length` length
   # options:
+  #  length: integer, nuber of characaters to generate. defualt 8
   #  lower_case: boolean. set to false to exclude lower case characters
   #              default: true
   #  upper_case: boolean. set to false to exclude upper case characters
@@ -60,7 +61,7 @@ def random_string(length=8, options={})
   #              default: true
 
   default_classes = {
-    lower_case: true, upper_case: true, numbers: true, special: false
+    length: 8, lower_case: true, upper_case: true, numbers: true, special: false
   }
   use = default_classes.merge(options || {})
 
@@ -74,11 +75,11 @@ def random_string(length=8, options={})
     raise Exception, "you need to choose at least one character class!"
   end
 
-  (0...length).map { characters[rand(characters.length)] }.join
+  (0...use[:length]).map { characters[rand(characters.length)] }.join
 end
 
 def fill_in_random(field, prefix=nil, string_options=nil)
-  random = random_string string_options
+  random = random_string, string_options
   string = prefix.nil? ? "#{random}" : "#{prefix}:#{random}"
   fill_in field, with: string
   string

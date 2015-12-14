@@ -77,10 +77,10 @@ Then(/random_string should return "(.+)"/) do |expected|
   assert_equal(random_string, expected)
 end
 
-Then(/random_string\(([\d]+)\) should return "(.+)"/) do |length, expected|
+Then(/random_string of length ([\d]+) should return "(.+)"/) do |length, expected|
   length_arg = Integer(length)
 
-  ret_val = random_string(length_arg)
+  ret_val = random_string(length: length_arg)
 
   assert_equal(ret_val, expected)
   assert_equal(ret_val.length, length_arg)
@@ -92,11 +92,11 @@ Then(/random_string without (lower_case|upper_case|numbers) should return "(.+)"
     upper_case: exclude == 'upper_case' ? false : true,
     numbers: exclude == 'numbers' ? false : true
   }
-  assert_equal(random_string(8, options), expected)
+  assert_equal(random_string(options), expected)
 end
 
 Then(/random_string with special should return "(.+)"/) do |expected|
-  assert_equal(random_string(32, lower_case: false, special: true), expected)
+  assert_equal(random_string(length: 32, lower_case: false, special: true), expected)
 end
 
 Then(/random_string without any classes should error/) do

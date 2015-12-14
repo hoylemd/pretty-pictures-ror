@@ -9,7 +9,7 @@ Feature: Test my test helpers
   Scenario: test random string helper
     When I seed the rand method with "64"
     Then random_string should return "eM3M2X0Z"
-    And random_string(14) should return "vWF4k2DiIqXEKc"
+    And random_string of length 14 should return "vWF4k2DiIqXEKc"
     And random_string without lower_case should return "GUP1M6KZ"
     And random_string without upper_case should return "ogs3pmos"
     And random_string without numbers should return "lADJRBRi"
