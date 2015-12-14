@@ -1,6 +1,6 @@
 module OAuthHelper
   class FiveHundredPxAdaptor
-    def initialize(user)
+    def initialize(user=nil)
       @consumer = build_consumer
 
       if user
@@ -9,24 +9,23 @@ module OAuthHelper
       end
     end
 
+    def make_request(method, path)
+      if @identity
+        response = @identity.request(method, path)
+      else
+        response = @consumer.request(method, path)
+      end
+      MultiJson.decode(response.body)
+    end
+
     def get_top_100
       path = '/v1/photos.json?feature=popular&rpp=100'
-      if @identity
-        response = @identity.get(path)
-      else
-        response = @consumer.request('get', path)
-      end
-      MultiJson.decode(response.body)['photos']
+      make_request('get', path)['photos']
     end
 
     def get_photo(id)
       path = "/v1/photos/#{id}"
-      if @identity
-        response = @identity.get(path)
-      else
-        response = @consumer.request('get', path)
-      end
-      MultiJson.decode(response.body)['photo']
+      make_request('get', path)['photo']
     end
 
     def get_user_access_token(credentials)
