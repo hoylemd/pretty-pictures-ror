@@ -13,8 +13,6 @@ Feature: Signup
     And I should see my username
     And I should not see any error messages
 
-
-  @skip
   Scenario: Omit all fields
     When I click "Create my account"
     Then I should see an error message that says "Username can't be blank"

@@ -79,7 +79,7 @@ def random_string(options={})
 end
 
 def fill_in_random(field, prefix=nil, string_options=nil)
-  random = random_string, string_options
+  random = random_string string_options
   string = prefix.nil? ? "#{random}" : "#{prefix}:#{random}"
   fill_in field, with: string
   string
