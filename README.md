@@ -17,6 +17,7 @@ note: I haven't tested installing this anywhere but my mac, so far. This may not
 
 * `git clone <repository-url>` this repository
 * `make install`
+* `make migrate`
 
 ## Running / Development
 
