@@ -13,6 +13,5 @@ Rails.application.routes.draw do
   post      'connect' => 'users#create_connection'
   delete    'connect' => 'users#disconnect'
 
-  get       'photos/:id' => 'photos#show'
-  patch     'photos/:id' => 'photos#update'
+  resources :photos
 end

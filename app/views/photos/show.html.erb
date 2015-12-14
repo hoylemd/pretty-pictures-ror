@@ -1,3 +1,5 @@
 <h1><%=@photo['name']%></h1>
 <img src="<%=@photo['image_url']%>"/>
 <p><%=@photo['description']%></p>
+<%= link_to 'I like this!', photo_path(@photo['id']), {method: 'patch', class: 'btn btn-like'}%>
+<span class='likes'><%=@photo['votes_count']%> others like this.</span>

@@ -5,6 +5,6 @@ class PhotosController < ApplicationController
   end
 
   def update
-    redirect_to photos_path
+    redirect_to photo_path(params[:id])
   end
 end
