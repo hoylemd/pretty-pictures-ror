@@ -27,7 +27,8 @@ class UsersController < ApplicationController
   def create_connection
     redirect_to login_path unless logged_in?
 
-    access_token = get_access_token_from_username_and_password(connect_params)
+    adaptor = FiveHundredPxAdaptor.new()
+    access_token = adaptor.get_user_access_token(connect_params)
 
     @current_user.oauth_token = access_token.token
     @current_user.oauth_secret = access_token.secret
