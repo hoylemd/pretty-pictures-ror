@@ -12,6 +12,7 @@ Feature: Signup
     Then I should see "Welcome to Pretty Pictures!"
     And I should see my username
     And I should not see any error messages
+    And I should see "Connected to 500px? No"
 
   Scenario: Omit all fields
     When I click "Create my account"
