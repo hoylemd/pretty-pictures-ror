@@ -2,4 +2,8 @@
 <img src="<%=@photo['image_url']%>"/>
 <p><%=@photo['description']%></p>
 <%= link_to 'I like this!', photo_path(@photo['id']), {method: 'patch', class: 'btn btn-like'}%>
-<span class='likes'><%=@photo['votes_count']%> others like this.</span>
+<% if logged_in? %>
+  <span class='likes'><%=@photo['votes_count']%> others like this.</span>
+<% else %>
+  <%=link_to 'Log In to like this photo', login_path, {class: 'btn btn-like'}%>
+<% end %>
