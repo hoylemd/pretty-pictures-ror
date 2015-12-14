@@ -47,7 +47,7 @@ def assert_find(parent, selector, message=nil, allow_ambiguous=false, options=ni
 end
 
 def assert_element_present(selector, message=nil, allow_ambiguous=false,
-                           options)
+                           options=nil)
   assert_find(page, selector, message, allow_ambiguous, options)
 end
 

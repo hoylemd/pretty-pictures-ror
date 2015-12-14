@@ -11,15 +11,13 @@ Given(/I have an account/) do
 end
 
 When(/I enter my username/) do
-  # TODO: this isnt working for some reason?
   assert_not @username.empty?
-  fill_in 'Username', @username
+  fill_in 'Username', with: @username
 end
 
 When(/I enter my password/) do
-  # TODO: this isnt working for some reason?
   assert_not @password.empty?
-  fill_in 'Password', @password
+  fill_in 'Password', with: @password
 end
 
 Then(/I should see my user profile/) do

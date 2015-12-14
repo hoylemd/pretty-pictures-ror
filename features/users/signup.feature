@@ -20,10 +20,19 @@ Feature: Signup
     And I should see a "Password Confirmation" field
     And I should see a "Bio" field
 
-
   Scenario: Omit all fields
     When I click "Create my account"
     Then I should see an error message that says "Username can't be blank"
     # TODO: fix the dupe error bug and change this back to 'an'
     And I should see any error message that says "Password can't be blank"
     And I should see an error message that says "Password is too short (minimum is 6 characters)"
+
+  Scenario: Signup with duplicate username
+    When I complete the signup form
+    And I click "Log Out"
+    And I visit the signup page
+    And I enter my username into "Username"
+    And I enter a random password
+    And I confirm my password
+    And I click "Create my account"
+    Then I should see an error message that says "Username has already been taken"
