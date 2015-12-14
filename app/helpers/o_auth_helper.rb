@@ -9,11 +9,11 @@ module OAuthHelper
       end
     end
 
-    def make_request(method, path)
+    def make_request(method, path, params=nil)
       if @identity
-        response = @identity.request(method, path)
+        response = @identity.request(method, path, params)
       else
-        response = @consumer.request(method, path)
+        response = @consumer.request(method, path, params)
       end
       MultiJson.decode(response.body)
     end
@@ -26,6 +26,11 @@ module OAuthHelper
     def get_photo(id)
       path = "/v1/photos/#{id}"
       make_request('get', path)['photo']
+    end
+
+    def post_vote(id)
+      path = "/v1/photos/#{id}/vote"
+      make_request('post', path, {vote: 1})
     end
 
     def get_user_access_token(credentials)

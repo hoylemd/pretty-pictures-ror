@@ -5,6 +5,10 @@ class PhotosController < ApplicationController
   end
 
   def update
+    if logged_in?
+     adaptor = FiveHundredPxAdaptor.new(current_user)
+     adaptor.post_vote(params[:id])
+    end
     redirect_to photo_path(params[:id])
   end
 end
