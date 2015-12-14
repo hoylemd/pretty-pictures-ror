@@ -1,0 +1,13 @@
+Available make commands:
+* `install`:	      Installs the app via bundle
+* `migrate`:	      Updates/creates the database to reflect the app's schema
+* `test`:	      Run the default unit and integration test suites
+* `unit`:	      Run the default unit test suite
+* `integration`:      Run the default integration test suite
+* `smoke`:	      Run the smoke test suite (fast subset of integration tests)
+* `meta-test`:	      Run the tests for the test helpers
+* `integration-all`:  Run all not-skipped integration tests
+* `test-all`:	      Run all unit tests and not-skipped integration tests
+* `server`:	      Start the development server
+* `lint`:	      Run the Rubocop linter
+* `help`:	      Print this message

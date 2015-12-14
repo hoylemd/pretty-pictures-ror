@@ -34,4 +34,7 @@ server:
 lint:
 	rubocop > errors.rubocop
 
+help:
+	cat .make_help
+
 FORCE:
