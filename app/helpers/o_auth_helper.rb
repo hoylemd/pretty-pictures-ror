@@ -4,15 +4,15 @@ module OAuthHelper
       @consumer = build_consumer
 
       if user
-        @api = OAuth::AccessToken.new(@consumer,
-                                      user.oauth_token, user.oauth_secret)
+        @identity = OAuth::AccessToken.new(@consumer,
+                                           user.oauth_token, user.oauth_secret)
       end
     end
 
     def get_top_100
       path = '/v1/photos.json?feature=popular&rpp=100'
-      if @api
-        response = @api.get(path)
+      if @identity
+        response = @identity.get(path)
       else
         response = @consumer.request('get', path)
       end
