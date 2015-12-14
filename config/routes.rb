@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'photos/show'
+
+  get 'photos/like'
+
   root      'pretty_pictures#home'
   get       'home'    => 'pretty_pictures#home'
   get       'signup'  => 'users#new'
