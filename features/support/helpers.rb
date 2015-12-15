@@ -62,7 +62,7 @@ def assert_lte(left, right, message=nil)
 end
 
 # Capybara-driven DOM assertions
-def assert_find(parent, selector, options=nil)
+def assert_find(parent, selector, options={})
   # options are passed directly to Capybara::Session#find
   # generally, it'll just be {text: 'text you are looking for'}
   found = nil
@@ -83,11 +83,11 @@ def assert_find(parent, selector, options=nil)
   found
 end
 
-def assert_element_present(selector, options=nil)
+def assert_element_present(selector, options={})
   assert_find(page, selector, options)
 end
 
-def assert_element_has_content(selector, options=nil)
+def assert_element_has_content(selector, options={})
   element = assert_element_present(selector, options)
   content = ""
   if element.tag_name == 'img'
