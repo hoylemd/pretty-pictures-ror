@@ -57,6 +57,15 @@ Feature: Signup
     Then I should see a success flash
     And I should see the home grid
 
+  Scenario: Attempt to connect to 500px with invalid credentials
+    When I complete the signup form
+    And I click "Connect"
+    Then I should see "Connect to 500px"
+    When I enter "hoylemdtesting" into "500px Username"
+    And I enter "birdieseverywhere" into "500px Password"
+    And I click "Connect to 500px"
+    Then I should see an error message that says "Sorry, your credentials were rejected."
+
   Scenario: Prompted to connect on user and photo pages
     When I complete the signup form
     Then I should see "Connect"

@@ -29,15 +29,21 @@ class UsersController < ApplicationController
 
     adaptor = FiveHundredPxAdaptor.new()
     filtered_params = connect_params
-    access_token = adaptor.get_user_access_token(filtered_params)
 
-    @current_user.oauth_token = access_token.token
-    @current_user.oauth_secret = access_token.secret
-    @current_user.save!(validate: false)
+    begin
+      access_token = adaptor.get_user_access_token(filtered_params)
+    rescue OAuth::Unauthorized
+      flash[:danger] = "Sorry, your credentials were rejected."
+      redirect_to connect_path
+    else
+      @current_user.oauth_token = access_token.token
+      @current_user.oauth_secret = access_token.secret
+      @current_user.save!(validate: false)
 
-    flash[:success] = "You have connected to 500px as '#{filtered_params[:username]}'"
+      flash[:success] = "You have connected to 500px as '#{filtered_params[:username]}'"
 
-    redirect_to home_path
+      redirect_to home_path
+    end
   end
 
   def disconnect

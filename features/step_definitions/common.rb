@@ -48,9 +48,9 @@ Then(/I should not see any error messages$/) do
   expect(page).not_to have_selector('.alert.alert-danger')
 end
 
-# TODO: remove the any case from this
 Then(/I should see an error message that says "(.*)"$/) do |message|
-  assert_element_present('.error-message', text: message)
+  locator = '.alert.alert-danger, .error-message'
+  assert_element_present(locator, text: message)
 end
 
 Then(/I should be on the (.*) pagei$/) do |page|
