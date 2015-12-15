@@ -4,5 +4,5 @@ Feature: home page
     Given I am viewing the app
 
   @smoke
-  Scenario: The app is present
-    Then I should see "Pretty Pictures"
+  Scenario: Home page shows the grid
+    Then I should see the home grid
