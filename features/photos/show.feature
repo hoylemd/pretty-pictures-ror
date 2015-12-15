@@ -1,6 +1,7 @@
 Feature: Photo single view
   Background:
-    Given I am viewing the app
+    Given I am logged in
+    And I am on the home page
     When I click the first photo card
 
   Scenario: The photo, name, and description are rendered.
