@@ -58,6 +58,11 @@ def assert_element_present(selector, options=nil)
   assert_find(page, selector, options)
 end
 
+def assert_element_has_content(selector, options=nil)
+  element = assert_find(selector, options)
+  assert_not_empty(element.text, "element #{selector} was found, but is empty.")
+end
+
 def random_string(options={})
   # Generates a random string of `length` length
   # options:
