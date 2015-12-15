@@ -4,7 +4,6 @@ Feature: Login
     Given I have an account
     And I am on the login page
 
-  # TODO: implement these tests
   @smoke
   Scenario: Normal login flow
     When I enter my username

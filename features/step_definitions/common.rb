@@ -44,6 +44,15 @@ Then(/I should see a success flash/) do
   expect(page).to have_selector('.alert.alert-success')
 end
 
+Then(/I should not see any error messages$/) do
+  expect(page).not_to have_selector('.alert.alert-danger')
+end
+
+# TODO: remove the any case from this
+Then(/I should see (an|any) error message that says "(.*)"$/) do |any, message|
+  assert_element_present('.error-message', nil, (any == 'any'), text: message)
+end
+
 Then(/I should be on the (.*) page/) do |page|
   assert_element_present(".id-#{page}")
 end
