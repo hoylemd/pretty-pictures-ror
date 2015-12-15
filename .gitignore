@@ -17,6 +17,7 @@
 /tmp
 .byebug_history
 errors.rubocop
+screenshots/
 
 # Ignore OS db files
 .DS_store
