@@ -36,3 +36,16 @@ Feature: Signup
     And I confirm my password
     And I click "Create my account"
     Then I should see an error message that says "Username has already been taken"
+
+  Scenario: Signup with bad passwords
+    When I enter a random username
+    And I enter a random password
+    And I confirm my password incorrectly
+    And I click "Create my account"
+    Then I should see an error message that says "Password confirmation doesn't match Password"
+    When I enter a random short password
+    And I confirm my password
+    And I click "Create my account"
+    Then I should see an error message that says "Password is too short (minimum is 6 characters)"
+
+  Scenario:
