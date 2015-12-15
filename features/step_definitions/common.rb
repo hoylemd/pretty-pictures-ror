@@ -49,8 +49,8 @@ Then(/I should not see any error messages$/) do
 end
 
 # TODO: remove the any case from this
-Then(/I should see (an|any) error message that says "(.*)"$/) do |any, message|
-  assert_element_present('.error-message', nil, (any == 'any'), text: message)
+Then(/I should see an error message that says "(.*)"$/) do |message|
+  assert_element_present('.error-message', text: message)
 end
 
 Then(/I should be on the (.*) page/) do |page|

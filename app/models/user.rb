@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :token, length: string_field_length
   validates :secret, length: string_field_length
   validates :bio, length: {maximum: 255}
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }
 
   has_secure_password
 

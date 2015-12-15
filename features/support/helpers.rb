@@ -22,20 +22,18 @@ def assert_not_equal(test, unexpected, message=nil)
   return assert test != unexpected, message
 end
 
-def assert_find(parent, selector, message=nil, allow_ambiguous=false, options=nil)
+def assert_find(parent, selector, options=nil)
   # options are passed directly to Capybara::Session#find
   # generally, it'll just be {text: 'text you are looking for'}
   found = ""
   begin
     parent.find(selector, options)
   rescue Capybara::Ambiguous
-    unless allow_ambiguous
-      unless message
-         message = "found multiple elements '#{selector}'" +
-           " with content '#{message}'"
-      end
-      found = 'multiple'
+    unless message
+       message = "found multiple elements '#{selector}'" +
+         " with content '#{message}'"
     end
+    found = 'multiple'
   rescue Capybara::ElementNotFound
     unless message
       message = "failed to find element '#{selector}'"
@@ -46,15 +44,14 @@ def assert_find(parent, selector, message=nil, allow_ambiguous=false, options=ni
   raise AssertionFailed, message unless found.empty?
 end
 
-def assert_element_present(selector, message=nil, allow_ambiguous=false,
-                           options=nil)
-  assert_find(page, selector, message, allow_ambiguous, options)
+def assert_element_present(selector, options=nil)
+  assert_find(page, selector, options)
 end
 
 def random_string(options={})
   # Generates a random string of `length` length
   # options:
-  #  length: integer, nuber of characaters to generate. defualt 8
+  #  length: integer, number of characters to generate. default 8
   #  lower_case: boolean. set to false to exclude lower case characters
   #              default: true
   #  upper_case: boolean. set to false to exclude upper case characters

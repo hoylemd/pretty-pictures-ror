@@ -23,8 +23,7 @@ Feature: Signup
   Scenario: Omit all fields
     When I click "Create my account"
     Then I should see an error message that says "Username can't be blank"
-    # TODO: fix the dupe error bug and change this back to 'an'
-    And I should see any error message that says "Password can't be blank"
+    And I should see an error message that says "Password can't be blank"
     And I should see an error message that says "Password is too short (minimum is 6 characters)"
 
   Scenario: Signup with duplicate username
