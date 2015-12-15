@@ -1,4 +1,4 @@
-Given(/I am viewing the app/) do
+Given(/I am viewing the app$/) do
   visit '/'
 end
 
@@ -14,19 +14,19 @@ def visit_page(page)
   visit page_mappings[page]
 end
 
-Given(/I am on the (.*) page/) do |page|
+Given(/I am on the (.*) page$/) do |page|
   visit_page(page)
 end
 
-When(/I visit the (.*) page/) do |page|
+When(/I visit the (.*) page$/) do |page|
   visit_page(page)
 end
 
-When(/I click "(.*)"/) do |text|
+When(/I click "(.*)"$/) do |text|
   click_on text
 end
 
-Then(/I should see "(.*)"/) do |text|
+Then(/I should see "(.*)"$/) do |text|
   expect(page).to have_content(text)
 end
 
@@ -34,13 +34,13 @@ def field_name_to_css(name)
   ".form-field.form-field-#{string_to_slug name}"
 end
 
-Then(/I should see a "(.+)" field/) do |field_name|
+Then(/I should see a "(.+)" field$/) do |field_name|
   field = page.find("#{field_name_to_css field_name}")
   assert_find(field, 'label', text: field_name)
   assert_find(field, 'input.form-control')
 end
 
-Then(/I should see a success flash/) do
+Then(/I should see a success flash$/) do
   expect(page).to have_selector('.alert.alert-success')
 end
 
@@ -53,6 +53,10 @@ Then(/I should see an error message that says "(.*)"$/) do |message|
   assert_element_present('.error-message', text: message)
 end
 
-Then(/I should be on the (.*) page/) do |page|
+Then(/I should be on the (.*) pagei$/) do |page|
   assert_element_present(".id-#{page}")
+end
+
+When(/I enter "(.+)" into "(.+)"$/) do |text, label|
+  fill_in label, with: text
 end

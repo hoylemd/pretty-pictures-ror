@@ -47,4 +47,12 @@ Feature: Signup
     And I click "Create my account"
     Then I should see an error message that says "Password is too short (minimum is 6 characters)"
 
-  Scenario:
+  Scenario: Connect to 500px
+    When I complete the signup form
+    And I click "Connect"
+    Then I should see "Connect to 500px"
+    When I enter "hoylemdtesting" into "500px Username"
+    And I enter "password" into "500px Password"
+    And I click "Connect to 500px"
+    Then I should see a success flash
+    And I should see the home grid
