@@ -58,8 +58,14 @@ def assert_element_present(selector, options=nil)
 end
 
 def assert_element_has_content(selector, options=nil)
-  element = assert_find(selector, options)
-  assert_not_empty(element.text, "element #{selector} was found, but is empty.")
+  element = assert_element_present(selector, options)
+  content = ""
+  if element.tag_name == 'img'
+    content = element[:src]
+  else
+    content = element.text
+  end
+  assert_not_empty(content, "element #{selector} was found, but is empty.")
 end
 
 def random_string(options={})
