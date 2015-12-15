@@ -1,12 +1,11 @@
 Given(/I have an account/) do
-  # Normally, I would use API calls to set up Given steps, but I'm not going
-  # to implement an API for my app. This is an AWFUL way to set up integration
-  # tests though - I am *not* a fan
-  step 'I am on the signup page'
-  step 'I complete the signup form'
-  step 'I should see "Welcome to Pretty Pictures!"'
-  step 'I should not see any error messages'
+  sign_up
   click_on 'Log Out'
+end
+
+Given(/I am logged in$/) do
+  sign_up
+  connect_account
 end
 
 When(/I enter my username/) do
