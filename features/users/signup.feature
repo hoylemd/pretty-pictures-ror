@@ -17,7 +17,7 @@ Feature: Signup
   Scenario: All signup fields are present
     Then I should see a "Username" field
     And I should see a "Password" field
-    And I should see a "Password Confirmation" field
+    And I should see a "Confirmation" field
     And I should see a "Bio" field
 
   Scenario: Omit all fields
