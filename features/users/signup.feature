@@ -56,3 +56,11 @@ Feature: Signup
     And I click "Connect to 500px"
     Then I should see a success flash
     And I should see the home grid
+
+  Scenario: Prompted to connect on user and photo pages
+    When I complete the signup form
+    Then I should see "Connect"
+    When I visit the home page
+    And I click the first photo card
+    And I click "Connect to your 500px account now!"
+    Then I should see "Enter your 500px credentials here"
