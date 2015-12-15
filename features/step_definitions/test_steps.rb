@@ -69,6 +69,48 @@ Then(/I test my assert_not_equal helper/) do
   end
 end
 
+Then(/I test my assert_empty helper$/) do
+  assert_empty ''
+  assert_empty []
+  empty_hash = {}
+  assert_empty(empty_hash)
+
+  begin
+    assert_empty "blah"
+  rescue AssertionFailed
+  end
+  begin
+    assert_empty [5]
+  rescue AssertionFailed
+  end
+
+  begin
+    assert_empty key: 23
+  rescue AssertionFailed
+  end
+end
+
+Then(/I test my assert_not_empty helper$/) do
+  assert_not_empty 'hello'
+  assert_not_empty [42]
+  assert_not_empty key: 'a thing'
+
+  begin
+    assert_not_empty ""
+  rescue AssertionFailed
+  end
+  begin
+    assert_not_empty []
+  rescue AssertionFailed
+  end
+
+  begin
+    empty_hash = {}
+    assert_not_empty empty_hash
+  rescue AssertionFailed
+  end
+end
+
 When(/I seed the rand method with "([\d]+)"/) do |seed|
   srand(Integer(seed))
 end

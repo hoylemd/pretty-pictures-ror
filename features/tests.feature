@@ -5,6 +5,8 @@ Feature: Test my test helpers
     And I test my assert_not helper
     And I test my assert_equal helper
     And I test my assert_not_equal helper
+    And I test my assert_empty helper
+    And I test my assert_not_empty helper
 
   Scenario: test random string helper
     When I seed the rand method with "64"

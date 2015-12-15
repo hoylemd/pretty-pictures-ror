@@ -22,6 +22,16 @@ def assert_not_equal(test, unexpected, message=nil)
   return assert test != unexpected, message
 end
 
+def assert_empty(test, message=nil)
+  message = "passed object was not empty [#{test}]" if message.nil?
+  return assert test.empty?, message
+end
+
+def assert_not_empty(test, message=nil)
+  message = "passed object was empty" if message.nil?
+  return assert_not test.empty?, message
+end
+
 def assert_find(parent, selector, options=nil)
   # options are passed directly to Capybara::Session#find
   # generally, it'll just be {text: 'text you are looking for'}
