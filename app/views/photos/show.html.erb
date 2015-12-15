@@ -6,7 +6,10 @@
   <%=@photo['description']%>
 </p>
 <div class='photo-likes'>
-  <%=@photo['votes_count']%> others like this.
+  <span class='photo-likes-count'>
+    <%=@photo['votes_count']%>
+  </span>
+  people like this.
 </div>
 <% if logged_in? %>
   <% if @current_user.connected_to_500px? %>

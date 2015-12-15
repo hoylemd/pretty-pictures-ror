@@ -40,9 +40,10 @@ end
 
 def connect_account()
   visit('/connect')
-  fill_in '500px Username', with: 'hoyledtesting'
+  fill_in '500px Username', with: 'hoylemdtesting'
   fill_in '500px Password', with: 'password'
   click_on 'Connect to 500px'
+  assert_element_present('.alert.alert-success')
 end
 
 When(/I complete the signup form$/) do

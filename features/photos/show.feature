@@ -9,3 +9,7 @@ Feature: Photo single view
     And I should see the photo's name
     And I should see the photo's description
     And I should see the photo's likes
+
+  Scenario: Liking a photo
+    When I click "I like this!"
+    Then I should see a success flash
