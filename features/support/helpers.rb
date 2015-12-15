@@ -35,23 +35,22 @@ end
 def assert_find(parent, selector, options=nil)
   # options are passed directly to Capybara::Session#find
   # generally, it'll just be {text: 'text you are looking for'}
-  found = ""
+  found = nil
   begin
-    parent.find(selector, options)
+    found = parent.find(selector, options)
   rescue Capybara::Ambiguous
     unless message
        message = "found multiple elements '#{selector}'" +
          " with content '#{message}'"
     end
-    found = 'multiple'
   rescue Capybara::ElementNotFound
     unless message
       message = "failed to find element '#{selector}'"
       message += " with content '#{options[:text]}'" if options[:text]
     end
-    found = 'none'
   end
-  raise AssertionFailed, message unless found.empty?
+  raise AssertionFailed, message if found.nil?
+  found
 end
 
 def assert_element_present(selector, options=nil)
