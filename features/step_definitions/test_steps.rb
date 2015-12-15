@@ -1,3 +1,4 @@
+# assert helpers
 Then(/I test my assert helper/) do
   assert(true)
   assert(5)
@@ -111,6 +112,55 @@ Then(/I test my assert_not_empty helper$/) do
   end
 end
 
+Then(/I test my assert_gt helper$/) do
+  assert_gt 5, 2
+
+  begin
+    assert_gt 4, 4
+  rescue AssertionFailed
+  end
+
+  begin
+    assert_gt 2, 18
+  rescue AssertionFailed
+  end
+end
+
+Then(/I test my assert_lt helper$/) do
+  assert_lt 5, 9
+
+  begin
+    assert_lt 4, 4
+  rescue AssertionFailed
+  end
+
+  begin
+    assert_lt 13, 2
+  rescue AssertionFailed
+  end
+end
+
+Then(/I test my assert_gte helper$/) do
+  assert_gte 5, 2
+  assert_gte 4, 4
+
+  begin
+    assert_gte 2, 18
+  rescue AssertionFailed
+  end
+end
+
+Then(/I test my assert_lte helper$/) do
+  assert_lte 5, 9
+  assert_lte 4, 4
+
+  begin
+    assert_lte 13, 2
+  rescue AssertionFailed
+  end
+end
+
+# random helpers
 When(/I seed the rand method with "([\d]+)"/) do |seed|
   srand(Integer(seed))
 end
