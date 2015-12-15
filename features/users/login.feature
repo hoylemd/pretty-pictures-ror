@@ -16,3 +16,7 @@ Feature: Login
     When I click "Log Out"
     Then I should see "Log in"
     And I should not be logged in
+
+  Scenario: Both login fields are present
+    Then I should see a "Username" field
+    And I should see a "Password" field
