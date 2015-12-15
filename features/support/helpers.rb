@@ -5,32 +5,43 @@ end
 def assert(test, message=nil)
   message = "assertion failed [#{test}]" if message.nil?
   raise AssertionFailed, message if not test
-  return true
+  true
 end
 
 def assert_equal(test, expected, message=nil)
   message = "[#{test}] was not equal to [#{expected}]" if message.nil?
-  return assert test == expected, message
+  assert test == expected, message
 end
 
 def assert_not(test, message=nil)
   message = "negative assertion failed [#{test}]" if message.nil?
-  return assert !test, message
+  assert !test, message
 end
 
 def assert_not_equal(test, unexpected, message=nil)
   message = "[#{test}] was equal to [#{unexpected}]" if message.nil?
-  return assert test != unexpected, message
+  assert test != unexpected, message
 end
 
 def assert_empty(test, message=nil)
   message = "passed object was not empty [#{test}]" if message.nil?
-  return assert test.empty?, message
+  begin
+    assert (test.nil? || test.empty?), message
+  rescue NoMethodError
+    # if the test object isn't nil, and has no empty? method, it's probably not
+    raise AssertionFailed, message
+  end
 end
 
 def assert_not_empty(test, message=nil)
   message = "passed object was empty" if message.nil?
-  return assert_not test.empty?, message
+  assert_not test.nil?
+  begin
+    assert_not test.empty?, message
+  rescue NoMethodError
+    # if the test object isn't nil, and has no empty? method, it's probably not
+  end
+  true
 end
 
 def assert_gt(left, right, message=nil)

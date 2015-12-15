@@ -75,11 +75,13 @@ Then(/I test my assert_empty helper$/) do
   assert_empty []
   empty_hash = {}
   assert_empty(empty_hash)
+  assert_empty(nil)
 
   begin
     assert_empty "blah"
   rescue AssertionFailed
   end
+
   begin
     assert_empty [5]
   rescue AssertionFailed
@@ -89,17 +91,24 @@ Then(/I test my assert_empty helper$/) do
     assert_empty key: 23
   rescue AssertionFailed
   end
+
+  begin
+    assert_empty 5
+  rescue AssertionFailed
+  end
 end
 
 Then(/I test my assert_not_empty helper$/) do
   assert_not_empty 'hello'
   assert_not_empty [42]
   assert_not_empty key: 'a thing'
+  assert_not_empty 5
 
   begin
     assert_not_empty ""
   rescue AssertionFailed
   end
+
   begin
     assert_not_empty []
   rescue AssertionFailed
@@ -108,6 +117,11 @@ Then(/I test my assert_not_empty helper$/) do
   begin
     empty_hash = {}
     assert_not_empty empty_hash
+  rescue AssertionFailed
+  end
+
+  begin
+    assert_not_empty nil
   rescue AssertionFailed
   end
 end
