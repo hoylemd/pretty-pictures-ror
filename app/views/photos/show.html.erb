@@ -1,7 +1,13 @@
-<h1><%=@photo['name']%></h1>
-<img src="<%=@photo['image_url']%>"/>
-<p><%=@photo['description']%></p>
-<div class='likes'><%=@photo['votes_count']%> others like this.</div>
+<h1 class="photo-name">
+  <%=@photo['name']%>
+</h1>
+<img class="photo-image" src="<%=@photo['image_url']%>"/>
+<p class="photo-description">
+  <%=@photo['description']%>
+</p>
+<div class='photo-likes'>
+  <%=@photo['votes_count']%> others like this.
+</div>
 <% if logged_in? %>
   <% if @current_user.connected_to_500px? %>
     <%= link_to 'I like this!', photo_path(@photo['id']), {method: 'patch', class: 'btn btn-like'}%>
