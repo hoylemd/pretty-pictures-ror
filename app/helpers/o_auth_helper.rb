@@ -19,7 +19,7 @@ module OAuthHelper
     end
 
     def get_top_100
-      path = '/v1/photos.json?feature=popular&rpp=100'
+      path = '/v1/photos.json?feature=popular&rpp=100&exclude=nude'
       make_request('get', path)['photos']
     end
 
